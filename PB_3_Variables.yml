@@ -16,7 +16,7 @@
     var1PB: 'Text from the PlayBook. Variable 1'
   
   var_files:
-    - ./cams_variable.yml
+    - ./cams_varaible.yml
   
   tasks:
   # Put out a comment
