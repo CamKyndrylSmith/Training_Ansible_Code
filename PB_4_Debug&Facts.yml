@@ -1,0 +1,29 @@
+---
+# ------------------------------------------------
+# Camerons Ansible PlayBook 4
+#
+# Purpose: Review debug and Facts 
+# ------------------------------------------------
+- name: Cam's playbook 4 (Name)
+  gather_facts: true
+  hosts: all
+
+  tasks:
+  # Put out a comment
+  - name: "Comment out"
+    win_shell: echo "Going to Test all variable locations"
+  
+  # Test debug command 
+  - name: "Debug output"
+    debug: 
+      msg: "DEBUG: This is a debug message from the playbook."
+    
+  # Test the ansible host name fact data 
+  - name: "Get facts data"
+    debug:
+      msg: "{{ ansible_hostname }}"
+  
+  # Test the ansible distribution 
+  - name: "Get facts data"
+    debug:
+      msg: "{{ ansible_distribution }}"
