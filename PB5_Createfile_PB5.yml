@@ -12,14 +12,7 @@
     # Put out a comment
     - name: "Comment out"
       win_shell: echo "Going to test creating a file on the ansible server "
-  
-    # Create the file on the ansible host
-    - name: "Create file on ansible host"
-      copy:
-        content: "This is the content of the file created by Cameron"
-           dest: /cams_createFileTest.txt
-        delegate_to: localhost
-      
+    
     - name: "Capture output of whoami command"
       win_shell: whoami
        register: who_am_i
