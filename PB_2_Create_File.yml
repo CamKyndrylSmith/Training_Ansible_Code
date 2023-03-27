@@ -16,6 +16,6 @@
 
   # Create the empty file  
   - name: "Creating an empty file"
-    ansible.builtin.file:
+    win_file:
       path: "{{ myfile }}"
       state: touch
