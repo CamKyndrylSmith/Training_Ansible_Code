@@ -1,0 +1,14 @@
+# ------------------------------------------------
+# Camerons first Ansible playbook
+# ------------------------------------------------
+- name: Cam's first playbook (Name)
+  hosts: all
+
+  tasks:
+  # Put out a comment
+  - name: "First comment out Hello everyone"
+    shell: echo "Hello everyone"
+
+  # My second comment  
+  - name: "Second comment out"
+    shell: echo "Hi! back at you.."
