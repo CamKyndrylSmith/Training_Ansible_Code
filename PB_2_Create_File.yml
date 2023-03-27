@@ -4,15 +4,18 @@
 # Purpose:  Create a file in the temp directory
 # ------------------------------------------------
 - name: Cam's playbook 2 (Name)
+  gather_facts: false
   hosts: all
-
+  vars:
+    myfile: 'C:\Temp\Cams_Test.txt'
+    
   tasks:
   # Put out a comment
   - name: "Comment out"
     win_shell: echo "Going to create a file in Temp folder called Cams_Test.txt"
 
   # Create the empty file  
-  - name: "Create the file in TEMP"
-    file:
-      path: C:\Temp\Cams_Test.txt
+  - name: "Creating an empty file"
+    ansible.windows.win_file:
+      path: "{{ myfile }}"
       state: touch
