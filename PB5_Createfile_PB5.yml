@@ -1,0 +1,21 @@
+---
+# ------------------------------------------------
+# Camerons Ansible PlayBook 5
+#
+# Purpose: Create a file on the ansible host
+# ------------------------------------------------
+- name: Cam's playbook 5 (Name)
+  gather_facts: false
+  hosts: all
+
+  tasks:
+  # Put out a comment
+  - name: "Comment out"
+    win_shell: echo "Going to test creating a file on the ansible server "
+  
+  # Put out a comment
+  - name: "Create file on ansible host"
+    copy:
+      content: "This is the content of the file created by Cameron"
+      dest: /Cams_createFileTest.txt
+      delegate_to: localhost
