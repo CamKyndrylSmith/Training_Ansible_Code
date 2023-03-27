@@ -13,7 +13,7 @@
   hosts: all
   
   vars:
-    var1PB: 'Text from the PlayBook. Variable 1'
+    var1PB: "Text from the PlayBook. Variable 1"
   
   var_files:
     - ./cams_varaible.yml
