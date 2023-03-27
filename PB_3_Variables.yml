@@ -25,20 +25,20 @@
 
   # Test the variable from the playbook   
   - name: "Variable 1 from Playbook itself"
-    win_shell: echo {{ var1PB }}
+    win_shell: echo "{{ var1PB }}"
 
   # Test variable from the host   
   - name: "Variable 2 from Host"
-    win_shell: echo {{ var2Host }}
+    win_shell: echo "{{ var2Host }}"
 
   # Test variable from the from the Invetory
   - name: "Variable 3 from Invetory"
-    win_shell: echo {{ var3Inv }}
+    win_shell: echo "{{ var3Inv }}"
 
   # Test variable from the template
   - name: "Variable 4 from Template"
-    win_shell: echo {{ var4Temp }}
+    win_shell: echo "{{ var4Temp }}"
     
   # Test variable from a file
   - name: "Variable 5 from a file"
-    win_shell: echo {{ var5file }} 
+    win_shell: echo "{{ var5file }}"
