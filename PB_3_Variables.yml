@@ -1,0 +1,41 @@
+# ------------------------------------------------
+# Camerons Ansible PlayBook 3
+#
+# Purpose: Variables in the four locations
+#           1 Playbook
+#           2 Host
+#           3 Invetory
+#           4 Template
+# ------------------------------------------------
+- name: Cam's playbook 3 (Name)
+  gather_facts: false
+  hosts: all
+  
+  vars:
+    var1PB: 'Text from the PlayBook. Variable 1'
+  
+  var_files:
+    - ./cams_variable.yml:
+  
+  tasks:
+  # Put out a comment
+  - name: "Comment out"
+    win_shell: echo "Going to Test all variable locations"
+
+  # Test the variable from the playbook   
+  - name: "Variable 1 from Playbook itself"
+    win_shell: echo {{ var1PB }}
+
+  # Test variable from the host   
+  - name: "Variable 2 from Host"
+    win_shell: echo {{ var2Host }}
+
+  # Test variable from the from the Invetory
+  - name: "Variable 3 from Invetory"
+    win_shell: echo {{ var3Inv }}
+
+  # Test variable from the templ
+  - name: "Variable 4 from Template"
+    win_shell: echo {{ var4Temp }}
+    
+    
