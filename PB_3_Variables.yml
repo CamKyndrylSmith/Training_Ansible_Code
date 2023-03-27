@@ -41,4 +41,4 @@
     
   # Test variable from a file
   - name: "Variable 5 from a file"
-    win_shell: echo {{ var_files }} 
+    win_shell: echo {{ var5file }} 
