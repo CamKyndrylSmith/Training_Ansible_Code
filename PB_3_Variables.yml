@@ -6,6 +6,7 @@
 #           2 Host
 #           3 Invetory
 #           4 Template
+#           5 From a File
 # ------------------------------------------------
 - name: Cam's playbook 3 (Name)
   gather_facts: false
@@ -15,7 +16,7 @@
     var1PB: 'Text from the PlayBook. Variable 1'
   
   var_files:
-    - ./cams_variable.yml:
+    - ./cams_variable.yml
   
   tasks:
   # Put out a comment
@@ -34,8 +35,10 @@
   - name: "Variable 3 from Invetory"
     win_shell: echo {{ var3Inv }}
 
-  # Test variable from the templ
+  # Test variable from the template
   - name: "Variable 4 from Template"
     win_shell: echo {{ var4Temp }}
     
-    
+  # Test variable from a file
+  - name: "Variable 5 from a file"
+    win_shell: echo {{ var_files }} 
