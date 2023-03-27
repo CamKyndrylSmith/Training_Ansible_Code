@@ -1,0 +1,18 @@
+# ------------------------------------------------
+# Camerons Ansible PlayBook 2
+#
+# Purpose:  Create a file in the temp directory
+# ------------------------------------------------
+- name: Cam's playbook 2 (Name)
+  hosts: all
+
+  tasks:
+  # Put out a comment
+  - name: "Comment out"
+    win_shell: echo "Going to create a file in Temp folder called Cams_Test.txt"
+
+  # My second comment  
+  - name: "Second comment out"
+    ansible.windows.win_file:
+    path: C:\Temp\Cams_Test.txt
+    state: touch
