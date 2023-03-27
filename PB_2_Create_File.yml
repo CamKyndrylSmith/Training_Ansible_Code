@@ -11,8 +11,8 @@
   - name: "Comment out"
     win_shell: echo "Going to create a file in Temp folder called Cams_Test.txt"
 
-  # My second comment  
-  - name: "Second comment out"
-    ansible.windows.win_file:
-    path: C:\Temp\Cams_Test.txt
-    state: touch
+  # Create the empty file  
+  - name: "Create the file in TEMP"
+    file:
+      path: C:\Temp\Cams_Test.txt
+      state: touch
