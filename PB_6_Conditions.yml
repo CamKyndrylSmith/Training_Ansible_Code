@@ -10,10 +10,10 @@
   # Variables - lines to add to hosts file
   vars:
     lines:
-    - 192.255.1.99 foo.lab.net
-    - 192.255.1.100 foo.lab.net
-    - 192.255.1.101 foo.lab.net
-    - 192.255.1.102 foo.lab.net
+    - 192.0.1.99 foo.cam.net
+    - 192.0.1.100 foo.cam.net
+    - 192.0.1.101 foo.cam.net
+    - 192.0.1.102 foo.cam.net
 
   tasks:
   # Read windows contents of the hosts file into host_info 
