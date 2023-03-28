@@ -1,0 +1,16 @@
+# ------------------------------------------------
+# Camerons Ansible PlayBook 7
+#
+# Purpose:  Show importing a task from a separate file
+# ------------------------------------------------
+- name: Cam's playbook 7 (Name)
+  hosts: all
+
+  tasks:
+  # Put out a comment
+  - name: "Comment out"
+    win_shell: echo "Importing tasks to run"
+
+  # Import file and run tasks inside that file
+  - name: "Include other tasks file"
+    include_tasks: imported_tasks.yml
