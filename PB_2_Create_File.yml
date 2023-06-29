@@ -12,7 +12,7 @@
     
   tasks:
   # Put out a comment
-  - name: "Comment out"
+  - name: "Output comment to standard output"
     win_shell: echo "Going to create a file in Temp folder called Cams_Test.txt"
 
   # Create the empty file  
