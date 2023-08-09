@@ -7,8 +7,8 @@
 
   tasks:
   # Put out a comment
-  - name: "First comment out Hello everyone"
-    win_shell: echo "Hello everyone"
+  - name: "First comment out Hello everyone "
+    win_shell: echo "Hello everyone {{host_name}}"
 
   # My second comment  
   - name: "Second comment out"
