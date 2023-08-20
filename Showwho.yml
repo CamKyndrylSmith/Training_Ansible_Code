@@ -1,0 +1,13 @@
+---
+- name: Show value of whoami
+  hosts: all
+  tasks:
+    - name: capture output of whoami command
+      win_shell: whoami
+      register: login
+
+    - debug: var=login.stdout
+    
+    - debug: var=login.start
+    
+    - debug: var=login.cmd
