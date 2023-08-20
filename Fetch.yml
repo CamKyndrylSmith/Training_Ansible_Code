@@ -10,5 +10,5 @@
   tasks:
     - name: fetch nginx access log
       fetch:
-        src: /tmp/srv-certs/
+        src: /tmp/srv-certs/thiscert.cer
         dest: fetched
