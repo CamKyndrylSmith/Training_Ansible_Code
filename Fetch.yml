@@ -1,0 +1,14 @@
+# ------------------------------------------------
+# Camerons Ansible PlayBook tesing fetch
+#
+#
+# ------------------------------------------------
+- name: Cam's Test fetch
+  gather_facts: false
+  hosts: all
+
+  tasks:
+    - name: fetch nginx access log
+      fetch:
+        src: /tmp/srv-certs/
+        dest: fetched
