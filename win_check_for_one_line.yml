@@ -2,20 +2,24 @@
 # Camerons check for a line of code update if not there 
 # ------------------------------------------------
 - name: Windows check for line and add if not there 
+  gather_facts: false
   hosts: all
+  vars:
+      conf_dir: 'C:\Program Files\ILMT\config\'
+      conf_file: 'computer_properties.yml'
 
   tasks:
 
     # Check if the ILMT folder exists
     - name: Look for ILMT config folder
       win_stat:
-        path: 'C:\Program Files\ILMT\config\'
+        path: {{ conf_dir }}
       register: folder_check 
 
     - name: Find the file
       win_find:
-        paths: C:\Program Files\ILMT\config\ 
-        patterns: 'computer_properties.yml'
+        paths: {{ conf_dir }} 
+        patterns: {{ conf_file }}
       register: file_result      
       ignore_errors: true
       when: folder_check.stat.exists == true
@@ -23,8 +27,8 @@
     # Create a missing config file 
     - name: Create a missing configuration file
       win_copy:
-        src:  'files/computer_properties.yml'
-        dest: 'C:\Program Files\ILMT\config\computer_properties.yml'
+        src:  'files/{{ conf_file }}'
+        dest: {{ conf_dir }}{{ conf_file }}
       when: 
         - folder_check.stat.exists == true
         - file_result.matched == 0
@@ -32,7 +36,7 @@
     # changed out  path: "{{ file_result.files[0].path }}"
     - name: Check if string exists in file
       win_lineinfile:
-        path:  C:\Program Files\ILMT\config\computer_properties.yml
+        path: {{ conf_dir }}{{ conf_file }}
         regexp: '.*AnsibleOrg:*'
         LINE: 'AnsibleOrg: tpa'
         state: present
