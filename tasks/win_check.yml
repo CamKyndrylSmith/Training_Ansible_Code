@@ -1,10 +1,9 @@
 # ------------------------------------------------
 # Camerons check for a line of code update if not there 
 # ------------------------------------------------
-- name: tasks vars
-  vars:
-    conf_dir: 'C:\Program Files\ILMT\config\'
-    conf_file: 'computer_properties.yml'
+vars:
+  conf_dir: 'C:\Program Files\ILMT\config\'
+  conf_file: 'computer_properties.yml'
 
 # Check if the ILMT folder exists
 - name: Look for ILMT config folder
