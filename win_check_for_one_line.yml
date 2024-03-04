@@ -39,7 +39,7 @@
       win_lineinfile:
         path: '{{ conf_dir }}{{ conf_file }}'
         regexp: '.*AnsibleOrg:*'
-        LINE: 'AnsibleOrg: tpa'
+        line: 'AnsibleOrg: tpa'
         state: present
       register: string_check_result
       when: 
