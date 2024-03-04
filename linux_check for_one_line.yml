@@ -30,6 +30,7 @@
         src:  'files/{{ conf_file }}'
         dest: '{{ conf_dir }}{{ conf_file }}'
       register: file_create  
+      ignore_errors: true
       when: 
         - folder_check.stat.exists == true
         - file_result.matched == 0
@@ -42,6 +43,7 @@
         LINE: 'AnsibleOrg: tpa'
         state: present
       register: string_check_result
+      ignore_errors: true
       when: 
         - folder_check.stat.exists == true
         - file_result.matched > 0
