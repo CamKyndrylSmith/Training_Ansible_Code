@@ -22,7 +22,7 @@
 
     # Create a missing config file 
     - name: Create a missing configuration file
-      copy:
+      win_copy:
         src:  'files/computer_properties.yml'
         dest: 'C:\Program Files\ILMT\config\computer_properties.yml'
       when: 
