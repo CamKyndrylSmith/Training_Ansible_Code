@@ -4,6 +4,9 @@
 - name: Windows check for line and add if not there 
   gather_facts: false
   hosts: all
+  vars:
+    conf_dir: 'C:\Program Files\ILMT\config\'
+    conf_file: 'computer_properties.yml'
  
   tasks:
 
