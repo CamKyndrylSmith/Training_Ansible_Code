@@ -5,24 +5,26 @@
   hosts: all
 
   tasks:
-    - name: Find the file
-      win_find:
-        paths: C:\Program Files\ILMT\config\ 
-        patterns: 'computer_properties.yml'
-      register: file_result      
-      ignore_errors: true
+    #- name: Find the file
+    #  win_find:
+    #    paths: C:\Program Files\ILMT\config\ 
+    #    patterns: 'computer_properties.yml'
+    #  register: file_result      
+    #  ignore_errors: true
     
+
+    # changed out  path: "{{ file_result.files[0].path }}"
     - name: Check if string exists in file
       win_lineinfile:
-        path: "{{ file_result.files[0].path }}"
+        path:  C:\Program Files\ILMT\config\computer_properties.yml
         regexp: '.*AnsibleOrg:*'
         LINE: 'AnsibleOrg: tpa'
         state: present
       register: string_check_result
-      when: file_result.matched > 0
+    #  when: file_result.matched > 0
 
-    - name: Print string existence status
-      debug:
-        msg: "String exists in file: {{ string_check_result }}"
-      when: file_result.matched > 0
+    #- name: Print string existence status
+    #  debug:
+    #    msg: "String exists in file: {{ string_check_result }}"
+    #  when: file_result.matched > 0
     
