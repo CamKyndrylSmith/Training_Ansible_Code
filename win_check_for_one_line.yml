@@ -16,7 +16,7 @@
     # changed out  path: "{{ file_result.files[0].path }}"
     - name: Check if string exists in file
       win_lineinfile:
-        path:  C:\Program Files\ILMT\config\computer_properties.yml
+        path:  C:\Program Files\ILMT\config\computer_properties2.yml
         regexp: '.*AnsibleOrg:*'
         LINE: 'AnsibleOrg: tpa'
         state: present
