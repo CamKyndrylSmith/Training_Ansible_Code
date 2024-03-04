@@ -1,0 +1,63 @@
+# ------------------------------------------------
+# Camerons check for a line of code update if not there 
+# ------------------------------------------------
+- name: tasks vars
+  vars:
+  conf_dir: 'C:\Program Files\ILMT\config\'
+  conf_file: 'computer_properties.yml'
+
+# Check if the ILMT folder exists
+- name: Look for ILMT config folder
+  win_stat:
+    path: '{{ conf_dir }}'
+  register: folder_check 
+
+- name: Find the configuration file
+  win_find:
+    paths: '{{ conf_dir }}' 
+    patterns: '{{ conf_file }}'
+  register: file_result      
+  ignore_errors: true
+  when: folder_check.stat.exists == true
+
+# Create a missing config file 
+- name: Create a missing configuration file
+  win_copy:
+    src:  'files/{{ conf_file }}'
+    dest: '{{ conf_dir }}{{ conf_file }}'
+  register: file_create  
+  when: 
+    - folder_check.stat.exists == true
+    - file_result.matched == 0
+
+# changed out  path: "{{ file_result.files[0].path }}"
+- name: Check if string exists in file
+  win_lineinfile:
+    path: '{{ conf_dir }}{{ conf_file }}'
+    regexp: '.*AnsibleOrg:*'
+    line: 'AnsibleOrg: tpa'
+    state: present
+  register: string_check_result
+  when: 
+    - folder_check.stat.exists == true
+    - file_result.matched > 0
+
+- name: Result of file not there 
+  debug:
+    msg: "The configuration file was missing, it now has been created {{ conf_file }}"
+  when: 
+    - file_create.changed == true
+
+- name: Result of file exists with out field 
+  debug:
+    msg: "AnsibleOrg: String has been added to configuration file: {{ conf_file }}"
+  when: 
+    - string_check_result.changed == true
+    - file_result.matched > 0
+
+- name: Result of file exists with the correct field 
+  debug:
+    msg: "AnsibleOrg: String already exists in configuration file: {{ conf_file }}"
+  when: 
+    - string_check_result.changed == false  
+    - file_result.matched > 0
