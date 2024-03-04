@@ -13,13 +13,13 @@
     # Check if the ILMT folder exists
     - name: Look for ILMT config folder
       win_stat:
-        path: {{ conf_dir }}
+        path: '{{ conf_dir }}'
       register: folder_check 
 
     - name: Find the file
       win_find:
-        paths: {{ conf_dir }} 
-        patterns: {{ conf_file }}
+        paths: '{{ conf_dir }}' 
+        patterns: '{{ conf_file }}'
       register: file_result      
       ignore_errors: true
       when: folder_check.stat.exists == true
