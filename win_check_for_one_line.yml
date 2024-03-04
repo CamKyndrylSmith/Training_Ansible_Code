@@ -54,14 +54,14 @@
     
     - name: Result of file exists with out field 
       debug:
-        msg: "String has been added to configuration file: {{ conf_file }}"
+        msg: "AnsibleOrg: String has been added to configuration file: {{ conf_file }}"
       when: 
         - string_check_result.changed == true
         - file_result.matched > 0
 
     - name: Result of file exists with the correct field 
       debug:
-        msg: "String already exists in configuration file: {{ conf_file }}"
+        msg: "AnsibleOrg: String already exists in configuration file: {{ conf_file }}"
       when: 
         - string_check_result.changed == false  
         - file_result.matched > 0
