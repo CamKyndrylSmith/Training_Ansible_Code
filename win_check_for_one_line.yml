@@ -23,7 +23,7 @@
     # Create a missing config file 
     - name: Create a missing configuration file
       copy:
-        content: 'AnsibleOrg: tpa'
+        src:  'files/computer_properties.yml'
         dest: 'C:\Program Files\ILMT\config\computer_properties.yml'
       when: 
         - folder_check.stat.exists == true
