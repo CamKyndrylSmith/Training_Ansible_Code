@@ -19,8 +19,10 @@
         LINE: 'AnsibleOrg: tpa'
         state: present
       register: string_check_result
+      when: file_result.matched > 0
 
     - name: Print string existence status
       debug:
         msg: "String exists in file: {{ string_check_result }}"
+      when: file_result.matched > 0
     
