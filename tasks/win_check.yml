@@ -3,8 +3,8 @@
 # ------------------------------------------------
 - name: tasks vars
   vars:
-  conf_dir: 'C:\Program Files\ILMT\config\'
-  conf_file: 'computer_properties.yml'
+    conf_dir: 'C:\Program Files\ILMT\config\'
+    conf_file: 'computer_properties.yml'
 
 # Check if the ILMT folder exists
 - name: Look for ILMT config folder
