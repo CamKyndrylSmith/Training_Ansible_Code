@@ -1,0 +1,30 @@
+- name: Fetch testing
+  gather_facts: true
+  hosts: all
+
+
+  tasks:
+  # Read windows contents of the hosts file into host_info 
+  - name: List contents of the folder
+    win_find:
+        paths: "c:\\temp\\Test"
+    register: folder_contents
+    when: ansible_system == "Win32NT"
+
+  - name: Display folder contents
+    debug:
+      msg: "{{ item.path }}"
+    with_items: "{{ folder_contents.files }}"
+    when: ansible_system == "Win32NT"
+
+  - name: List contents of the folder
+    find:
+        paths: "/var/opt/ILMT/config"
+        file_type: any
+    register: folder_contents
+    when: ansible_system != "Win32NT"
+
+  - name: Display folder contents
+    debug:
+        msg: "{{ folder_contents.files | map(attribute='path') | list }}"  
+    when: ansible_system != "Win32NT"
