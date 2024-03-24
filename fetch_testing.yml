@@ -4,27 +4,109 @@
 
 
   tasks:
-  # Read windows contents of the hosts file into host_info 
-  - name: List contents of the folder
-    win_find:
-        paths: "c:\\temp\\Test"
-    register: folder_contents
-    when: ansible_system == "Win32NT"
+    - name: "Create a temp folder to hold files (localhost)"
+      file:
+        path: "/tmp/ilmt"
+        state: directory
+      delegate_to: localhost
+      run_once: true
 
-  - name: Display folder contents
-    debug:
-      msg: "{{ item.path }}"
-    with_items: "{{ folder_contents.files }}"
-    when: ansible_system == "Win32NT"
 
-  - name: List contents of the folder
-    find:
-        paths: "/var/opt/ILMT/config"
-        file_type: any
-    register: folder_contents
-    when: ansible_system != "Win32NT"
 
-  - name: Display folder contents
-    debug:
-        msg: "{{ folder_contents.files | map(attribute='path') | list }}"  
-    when: ansible_system != "Win32NT"
+  # Windows
+    - name: List contents of the folder
+      win_find:
+          paths: "c:\\temp\\Test"
+      register: folder_contents
+      when: ansible_system == "Win32NT"
+
+    - name: Display folder contents
+      debug:
+        msg: "{{ item.path }}"
+      with_items: "{{ folder_contents.files }}"
+      when: ansible_system == "Win32NT"
+
+    - name: "Fetch ILMT files to workdir folder (localhost)"
+      fetch:
+        src: "c:\\temp\\Test\\"
+        dest: "/tmp/ilmt/"
+        flat: true
+      when: ansible_system == "Win32NT"
+
+    - name: List contents of the folder
+      win_find:
+          paths: "c:\\temp\\Test"
+      register: folder_contents
+      when: ansible_system == "Win32NT"
+
+    - name: Display folder contents
+      debug:
+        msg: "{{ item.path }}"
+      with_items: "{{ folder_contents.files }}"
+      when: ansible_system == "Win32NT"
+   
+
+    - name: List contents of the folder
+      find:
+          paths: "/tmp/ilmt"
+          file_type: any
+      register: folder_contents
+      delegate_to: localhost
+      run_once: true
+
+    - name: Display folder contents
+      debug:
+          msg: "{{ folder_contents.files | map(attribute='path') | list }}"  
+      delegate_to: localhost
+      run_once: true
+
+
+
+
+
+    # Linux
+    
+    - name: List contents of the folder
+      find:
+          paths: "/var/opt/ILMT/config"
+          file_type: any
+      register: folder_contents
+      when: ansible_system != "Win32NT"
+
+    - name: Display folder contents
+      debug:
+          msg: "{{ folder_contents.files | map(attribute='path') | list }}"  
+      when: ansible_system != "Win32NT"
+
+    - name: "Fetch ILMT files to workdir folder (localhost)"
+      fetch:
+        src: "/var/opt/ILMT/config/computer_properties.yml"
+        dest: "/tmp/ilmt/"
+        flat: true
+      when: ansible_system != "Win32NT"
+  
+    - name: List contents of the folder
+      find:
+          paths: "/var/opt/ILMT/config"
+          file_type: any
+      register: folder_contents
+      when: ansible_system != "Win32NT"
+
+    - name: Display folder contents
+      debug:
+          msg: "{{ folder_contents.files | map(attribute='path') | list }}"  
+      when: ansible_system != "Win32NT"
+
+    - name: List contents of the folder
+      find:
+          paths: "/tmp/ilmt"
+          file_type: any
+      register: folder_contents
+      delegate_to: localhost
+      run_once: true
+
+    - name: Display folder contents
+      debug:
+          msg: "{{ folder_contents.files | map(attribute='path') | list }}"  
+      delegate_to: localhost
+      run_once: true
