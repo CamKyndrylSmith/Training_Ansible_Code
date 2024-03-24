@@ -28,7 +28,7 @@
 
     - name: "Fetch ILMT files to workdir folder (localhost)"
       fetch:
-        src: "c:\\temp\\Test\\"
+        src: "c:\\temp\\Test\\testcontent.txt"
         dest: "/tmp/ilmt/"
         flat: true
       when: ansible_system == "Win32NT"
